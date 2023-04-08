@@ -1,16 +1,29 @@
-<div>
-    <input type=text [(ngModel)]="product.name">
-    <p *ngIf="errors.productName" style="color: red;">{{ errors.productName }}</p>
-    <br>
-    <input type="text" [(ngModel)]="product.code">
-    <p *ngIf="errors.productCode" style="color: red;">{{ errors.productCode }}</p>
-    <br>
-    <input type="text" [(ngModel)]="product.description">
-    <p *ngIf="errors.productDescription" style="color: red;">{{ errors.productDescription }}</p>
-    <br>
-    <input type="text" [(ngModel)]="product.quantity">
-    <p *ngIf="errors.productQuantity" style="color: red;">{{ errors.productQuantity }}</p>
-    <br>
-
-    <button (click)="handleClick()">click</button>
+<div *ngIf="isLoading; else templateName">
+    <div class="loader"></div>
 </div>
+<ng-template #templateName>
+    <div>
+        <input type=text [(ngModel)]="product.name">
+        <p *ngIf="errors.productName" style="color: red;">{{ errors.productName }}</p>
+        <br>
+        <input type="text" [(ngModel)]="product.code">
+        <p *ngIf="errors.productCode" style="color: red;">{{ errors.productCode }}</p>
+        <br>
+        <input type="text" [(ngModel)]="product.description">
+        <p *ngIf="errors.productDescription" style="color: red;">{{ errors.productDescription }}</p>
+        <br>
+        <input type="text" [(ngModel)]="product.quantity">
+        <p *ngIf="errors.productQuantity" style="color: red;">{{ errors.productQuantity }}</p>
+        <br>
+    
+        <button (click)="handleClick()">click</button>
+    </div>
+</ng-template>
+
+
+<p>hello</p>
+
+<img  *ngIf="isLoading; else templateImg" src="https://meyertimber.com/uploads/images/presets/product_page_normal/store/products/NO_IMAGE.jpg" style="height: 500px; width: 500px">
+<ng-template #templateImg>
+  <img src="https://images.pexels.com/photos/1111369/pexels-photo-1111369.jpeg?auto=compress&cs=tinysrgb&w=1600" style="height: 500px; width: 500px">
+</ng-template>
