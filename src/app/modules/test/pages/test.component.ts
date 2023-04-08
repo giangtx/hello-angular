@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['../css/test.component.css']
 })
 export class TestComponent {
+  isLoading: boolean = false;
   product: Product = {
     name: '',
     code: '',
@@ -20,12 +21,24 @@ export class TestComponent {
   };
 	hasError: boolean = false;
 
+  ngOnInit() {
+    this.isLoading = true;
+    // gọi api  
+    setTimeout(() => {
+      // sau khi gọi xong
+      this.isLoading = false;
+    }, 1000)
+  } 
+
   handleClick() {
 		console.log('handle click')
 		this.clearError();
     if (!this.product.name) {
 			this.hasError = true;
       this.errors.productName = 'Product name require';
+    } else if (this.product.name.length < 3) {
+      this.hasError = true;
+      this.errors.productName = 'Product name require > 3';
     }
     if (!this.product.code) {
 			this.hasError = true;
